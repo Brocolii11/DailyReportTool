@@ -99,24 +99,59 @@ navBtns.forEach(btn => {
 
 
 // ==========================================
-// 4. DASHBOARD DATE CALCULATOR
+// 4. LIVE DATES (refresh at midnight)
 // ==========================================
-const today = new Date();
-const dateS3 = new Date(today); dateS3.setDate(today.getDate() + 2);
-const dateS2 = new Date(today); dateS2.setDate(today.getDate() + 15);
-const dateS1 = new Date(today); dateS1.setDate(today.getDate() + 30);
-
 const APP_LOCALE = 'es-PR';
-const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+const shortDateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+const longDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-const dateTodayElem = document.getElementById('date-today');
-if (dateTodayElem) {
-    dateTodayElem.textContent = today.toLocaleDateString(APP_LOCALE, options);
+let today = new Date();
+let dateRolloverTimer = null;
+
+function formatAppDate(date, options) {
+    return date.toLocaleDateString(APP_LOCALE, options);
 }
 
-const dateS3Elem = document.getElementById('date-s3'); if (dateS3Elem) dateS3Elem.textContent = dateS3.toLocaleDateString(APP_LOCALE, options);
-const dateS2Elem = document.getElementById('date-s2'); if (dateS2Elem) dateS2Elem.textContent = dateS2.toLocaleDateString(APP_LOCALE, options);
-const dateS1Elem = document.getElementById('date-s1'); if (dateS1Elem) dateS1Elem.textContent = dateS1.toLocaleDateString(APP_LOCALE, options);
+function msUntilNextMidnight() {
+    const now = new Date();
+    const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 2);
+    return Math.max(1000, next - now);
+}
+
+function syncAppDates() {
+    today = new Date();
+
+    const dateS3 = new Date(today); dateS3.setDate(today.getDate() + 2);
+    const dateS2 = new Date(today); dateS2.setDate(today.getDate() + 15);
+    const dateS1 = new Date(today); dateS1.setDate(today.getDate() + 30);
+
+    const dateTodayElem = document.getElementById('date-today');
+    if (dateTodayElem) dateTodayElem.textContent = formatAppDate(today, shortDateOptions);
+
+    const dateS3Elem = document.getElementById('date-s3');
+    if (dateS3Elem) dateS3Elem.textContent = formatAppDate(dateS3, shortDateOptions);
+    const dateS2Elem = document.getElementById('date-s2');
+    if (dateS2Elem) dateS2Elem.textContent = formatAppDate(dateS2, shortDateOptions);
+    const dateS1Elem = document.getElementById('date-s1');
+    if (dateS1Elem) dateS1Elem.textContent = formatAppDate(dateS1, shortDateOptions);
+
+    const longDate = formatAppDate(today, longDateOptions);
+    setTextAll('.js-dash-summary-date', longDate);
+    setTextAll('.js-report-date', longDate);
+    setTextAll('.js-dealers-date', longDate);
+}
+
+function scheduleDateRollover() {
+    if (dateRolloverTimer) clearTimeout(dateRolloverTimer);
+    dateRolloverTimer = setTimeout(() => {
+        syncAppDates();
+        scheduleDateRollover();
+    }, msUntilNextMidnight());
+}
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') syncAppDates();
+});
 
 
 // ==========================================
@@ -126,13 +161,9 @@ const translations = {
     dashTitle: "Metas de seguimiento diario",
     dashReportTitle: "Informe diario de renovaciones",
     cardToday: "Hoy",
-    cardTodayDesc: "Vence hoy",
     cardS3: "S3",
-    cardS3Desc: "+2 días",
     cardS2: "S2",
-    cardS2Desc: "+15 días",
     cardS1: "S1",
-    cardS1Desc: "+30 días",
     reportMainTitle: "Informe diario de renovaciones",
     manualSubtitle: "Registro de pólizas",
     manualDesc: "Escriba la póliza y pulse el botón de la categoría en la que se registrará en el informe.",
@@ -224,13 +255,9 @@ function updateUILanguage() {
     setTextAll('.js-dash-report-title', t.dashReportTitle);
     setTextAll('.js-dash-dealers-title', t.dealersTitle);
     const txtCardToday = document.getElementById('txt-card-today'); if (txtCardToday) txtCardToday.textContent = t.cardToday;
-    const txtCardTodayDesc = document.getElementById('txt-card-today-desc'); if (txtCardTodayDesc) txtCardTodayDesc.textContent = t.cardTodayDesc;
     const txtCardS3 = document.getElementById('txt-card-s3'); if (txtCardS3) txtCardS3.textContent = t.cardS3;
-    const txtCardS3Desc = document.getElementById('txt-card-s3-desc'); if (txtCardS3Desc) txtCardS3Desc.textContent = t.cardS3Desc;
     const txtCardS2 = document.getElementById('txt-card-s2'); if (txtCardS2) txtCardS2.textContent = t.cardS2;
-    const txtCardS2Desc = document.getElementById('txt-card-s2-desc'); if (txtCardS2Desc) txtCardS2Desc.textContent = t.cardS2Desc;
     const txtCardS1 = document.getElementById('txt-card-s1'); if (txtCardS1) txtCardS1.textContent = t.cardS1;
-    const txtCardS1Desc = document.getElementById('txt-card-s1-desc'); if (txtCardS1Desc) txtCardS1Desc.textContent = t.cardS1Desc;
 
     // Titles & Labels
     const txtReportMainTitle = document.getElementById('txt-report-main-title'); if (txtReportMainTitle) txtReportMainTitle.textContent = t.reportMainTitle;
@@ -270,9 +297,6 @@ function updateUILanguage() {
     setTextAll('.js-lbl-total', t.bubbleLblTotal);
     setTextAll('.js-sub-total', t.bubbleSubTotal);
 
-    const locale = APP_LOCALE;
-    setTextAll('.js-report-date', today.toLocaleDateString(locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
-
     const txtDealersTitle = document.getElementById('txt-dealers-title'); if (txtDealersTitle) txtDealersTitle.textContent = t.dealersTitle;
     const txtDealersSubtitle = document.getElementById('txt-dealers-subtitle'); if (txtDealersSubtitle) txtDealersSubtitle.textContent = t.dealersSubtitle;
     const txtDealersDesc = document.getElementById('txt-dealers-desc'); if (txtDealersDesc) txtDealersDesc.textContent = t.dealersDesc;
@@ -284,12 +308,12 @@ function updateUILanguage() {
     const clearDealersBtnLang = document.getElementById('clear-dealers-btn'); if (clearDealersBtnLang) clearDealersBtnLang.textContent = t.dealersClearBtn;
     setTextAll('.js-dealers-brand-tag', t.dealersBrandTag);
     setTextAll('.js-dealers-summary-prefix', t.dealersSummaryPrefix);
-    setTextAll('.js-dealers-date', today.toLocaleDateString(locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
 
     document.querySelectorAll('.mini-btn').forEach(el => { el.textContent = t.addBtn; });
 
     renderReportEntries();
     if (typeof renderDealersReport === 'function') renderDealersReport();
+    syncAppDates();
 }
 
 
@@ -694,4 +718,5 @@ ${t.totalsHeader}
 
 // Initial UI & Language Initialization
 updateUILanguage();
+scheduleDateRollover();
 

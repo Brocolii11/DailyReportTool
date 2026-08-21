@@ -218,30 +218,86 @@ body {
 .dashboard-report .dealers-tally { margin-bottom: 0; }
 .dashboard-report .summary-bubbles-container { margin-bottom: 0; }
 
+.dashboard-reports .report-summary-section {
+    width: 75%;
+    padding: 6px 22px 6px;
+    border-radius: 14px;
+    box-shadow: none;
+}
+.dashboard-reports .dash-summary-date {
+    font-size: 0.68em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 14px 0 12px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid var(--glass-border);
+    line-height: 1.4;
+}
 .dashboard-reports .summary-bubbles-container {
     grid-template-columns: 1fr;
-    gap: 8px;
-}
-.dashboard-reports .dashboard-report:first-child .report-summary-section {
-    padding: 26px;
+    gap: 0;
 }
 .dashboard-reports .bubble-btn {
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     text-align: left;
     min-height: 0;
     height: auto;
-    padding: 10px 11px;
-    gap: 10px;
+    padding: 13px 0;
+    gap: 16px;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-bottom: 1px solid var(--list-border);
+    box-shadow: none;
+}
+.dashboard-reports .bubble-btn:last-child {
+    border-bottom: none;
+}
+.dashboard-reports .bubble-btn:nth-child(3) {
+    margin-bottom: 4px;
+}
+.dashboard-reports .bubble-total {
+    margin-top: 4px;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: none;
+    padding-top: 14px;
 }
 .dashboard-reports .bubble-icon-wrap {
-    width: 29px;
-    height: 29px;
-    font-size: 0.84em;
+    width: auto;
+    height: auto;
+    min-width: 1.6em;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-main);
+    font-size: 1.15em;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    justify-content: flex-end;
+}
+.dashboard-reports .bubble-renewed .bubble-icon-wrap,
+.dashboard-reports .bubble-general .bubble-icon-wrap,
+.dashboard-reports .bubble-general-not-renewing .bubble-icon-wrap,
+.dashboard-reports .bubble-not-renewing .bubble-icon-wrap,
+.dashboard-reports .bubble-expired .bubble-icon-wrap,
+.dashboard-reports .bubble-total .bubble-icon-wrap,
+[data-theme="dark"] .dashboard-reports .bubble-expired .bubble-icon-wrap {
+    background: transparent;
+    color: var(--text-main);
+}
+.dashboard-reports .bubble-total .bubble-icon-wrap {
+    font-size: 1.28em;
+    font-weight: 700;
 }
 .dashboard-reports .bubble-info {
     align-items: flex-start;
     margin-top: 0;
+    flex: 1;
 }
 .dashboard-reports .bubble-label,
 .dashboard-reports .bubble-sub {
@@ -249,15 +305,23 @@ body {
     justify-content: flex-start;
     text-align: left;
 }
-.dashboard-reports .bubble-label { font-size: 0.7em; }
-.dashboard-reports .bubble-sub { font-size: 0.58em; }
+.dashboard-reports .bubble-label {
+    font-size: 0.84em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+.dashboard-reports .bubble-sub {
+    font-size: 0.68em;
+    font-weight: 400;
+    margin-top: 2px;
+}
+.dashboard-reports .bubble-total .bubble-label {
+    font-weight: 600;
+}
 .dashboard-reports .dealers-tally {
     flex-direction: column;
     flex-wrap: nowrap;
-    gap: 6px;
-}
-.dashboard-reports .dashboard-report:last-child .report-summary-section {
-    padding: 19px;
+    gap: 0;
 }
 .dashboard-reports .dealer-chip {
     flex: 0 0 auto;
@@ -267,16 +331,42 @@ body {
     align-items: center;
     text-align: left;
     min-height: 0;
-    padding: 7px 10px;
-    gap: 8px;
+    padding: 12px 0;
+    gap: 16px;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--list-border);
 }
-.dashboard-reports .dealer-chip-count { font-size: 0.95em; }
+.dashboard-reports .dealer-chip:last-child {
+    border-bottom: none;
+}
+.dashboard-reports .dealer-chip.has-sales {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--list-border);
+}
+.dashboard-reports .dealer-chip.has-sales:last-child {
+    border-bottom: none;
+}
+.dashboard-reports .dealer-chip-count {
+    font-size: 1.15em;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 1.6em;
+    text-align: right;
+}
+.dashboard-reports .dealer-chip.has-sales .dealer-chip-count {
+    font-weight: 700;
+}
 .dashboard-reports .dealer-chip-name {
     min-height: 0;
     justify-content: flex-start;
     text-align: left;
     order: -1;
-    font-size: 0.7em;
+    font-size: 0.84em;
+    font-weight: 500;
+    color: var(--text-main);
 }
 .follow-up-card {
     padding: 28px 20px;
@@ -295,7 +385,6 @@ body {
 .follow-up-card.s1::before { background: var(--text-main); box-shadow: none; }
 
 .card-header { font-weight: 600; font-size: 1.3em; color: var(--text-main); line-height: 1.2; min-height: 1.3em; }
-.card-desc { font-size: 0.9em; color: var(--text-muted); margin: 8px 0 16px 0; line-height: 1.3; min-height: 1.3em; }
 .card-date {
     color: var(--text-main);
     font-weight: 700;
@@ -307,7 +396,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: auto;
+    margin-top: 16px;
 }
 
 /* Count tiles — even columns, reserved text rows (dashboard + reports) */
