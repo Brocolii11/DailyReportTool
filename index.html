@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Report Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animated ambient background -->
+    <div class="bg-animation"></div>
+
+    <div class="app-container">
+        
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar glass-panel collapsed" id="sidebar">
+            
+            <div class="user-profile">
+                <div class="avatar">b</div>
+                <div class="user-info">
+                    <span class="username">broco</span>
+                    <span class="user-role">Daily Report Tool</span>
+                </div>
+            </div>
+
+            <h2 class="sidebar-title">Menú</h2>
+            <nav class="sidebar-nav">
+                <button type="button" class="nav-btn active" id="nav-dashboard">Panel</button>
+                <button type="button" class="nav-btn" id="nav-daily-report">Informe de renovaciones</button>
+                <button type="button" class="nav-btn" id="nav-dealers-report">Informe de dealers</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Top Bar for Sidebar Toggle -->
+            <div class="top-controls">
+                <button type="button" id="sidebar-toggle-btn" class="glass-btn icon-btn toggle-btn crystal-container shape-diamond">
+                    <!-- The 8-bit Crystal Icon Structure -->
+                    <div class="crystal-pixel p1"></div>
+                    <div class="crystal-pixel p2"></div>
+                    <div class="crystal-pixel p3"></div>
+                    <div class="crystal-pixel p4"></div>
+                    <div class="crystal-pixel p5"></div>
+                    <div class="crystal-gleam"></div>
+                </button>
+                <button type="button" id="theme-toggle-btn" class="glass-btn theme-toggle-btn" title="Cambiar a tema oscuro" aria-label="Cambiar a tema oscuro">
+                    <span class="theme-orb" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <!-- VIEW 1: Dashboard -->
+            <div id="view-dashboard" class="view">
+                <h2 class="section-title" id="txt-dash-title">Metas de seguimiento diario</h2>
+                <div class="follow-up-container">
+                    <div class="follow-up-card glass-panel today">
+                        <div class="card-header" id="txt-card-today">Hoy</div>
+                        <div class="card-desc" id="txt-card-today-desc">Vence hoy</div>
+                        <div class="card-date" id="date-today">--</div>
+                    </div>
+
+                    <div class="follow-up-card glass-panel s3">
+                        <div class="card-header" id="txt-card-s3">S3</div>
+                        <div class="card-desc" id="txt-card-s3-desc">+2 días</div>
+                        <div class="card-date" id="date-s3">--</div>
+                    </div>
+                    
+                    <div class="follow-up-card glass-panel s2">
+                        <div class="card-header" id="txt-card-s2">S2</div>
+                        <div class="card-desc" id="txt-card-s2-desc">+15 días</div>
+                        <div class="card-date" id="date-s2">--</div>
+                    </div>
+                    
+                    <div class="follow-up-card glass-panel s1">
+                        <div class="card-header" id="txt-card-s1">S1</div>
+                        <div class="card-desc" id="txt-card-s1-desc">+30 días</div>
+                        <div class="card-date" id="date-s1">--</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-reports">
+                <div class="dashboard-report">
+                    <h2 class="section-title js-dash-report-title">Informe diario de renovaciones</h2>
+                    <div class="report-summary-section glass-panel">
+                        <div class="summary-bubbles-container">
+                            <div class="bubble-btn bubble-renewed">
+                                <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-renewed-today">0</span>
+                                </div>
+                                <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-renewed-today">Renovadas</span>
+                                    <span class="bubble-sub js-sub-renewed-today">Diario</span>
+                                </div>
+                            </div>
+
+                            <div class="bubble-btn bubble-expired">
+                                <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-expired-today">0</span>
+                                </div>
+                                <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-expired-today">Expiradas</span>
+                                    <span class="bubble-sub js-sub-expired-today">Diario</span>
+                                </div>
+                            </div>
+
+                            <div class="bubble-btn bubble-not-renewing">
+                                <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-not-renewing">0</span>
+                                </div>
+                                <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-not-renewing">No renovarán</span>
+                                    <span class="bubble-sub js-sub-not-renewing">Diario</span>
+                                </div>
+                            </div>
+
+                            <div class="bubble-btn bubble-general">
+                                <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-general">0</span>
+                                </div>
+                                <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-general">Renovadas</span>
+                                    <span class="bubble-sub js-sub-general">General — después de hoy</span>
+                                </div>
+                            </div>
+
+                            <div class="bubble-btn bubble-general-not-renewing">
+                                <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-general-not-renewing">0</span>
+                                </div>
+                                <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-general-not-renewing">No renovarán</span>
+                                    <span class="bubble-sub js-sub-general-not-renewing">General — después de hoy</span>
+                                </div>
+                            </div>
+
+                            <div class="bubble-btn bubble-total">
+                                <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-total">0</span>
+                                </div>
+                                <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-total">Total registrado</span>
+                                    <span class="bubble-sub js-sub-total">Conteo total de actividad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-report">
+                    <h2 class="section-title js-dash-dealers-title">Informe de dealers</h2>
+                    <div class="report-summary-section glass-panel">
+                        <div class="dealers-tally js-dealers-tally"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- VIEW 2: Daily Report -->
+            <div id="view-daily-report" class="view hidden">
+                <div class="task-header-row">
+                    <h2 class="section-title" id="txt-report-main-title">Informe diario de renovaciones</h2>
+                    <div class="report-actions-top">
+                        <button type="button" id="copy-report-btn" class="glass-btn">Copiar resumen</button>
+                        <button type="button" id="clear-report-btn" class="glass-btn secondary-btn">Limpiar entradas</button>
+                    </div>
+                </div>
+
+                <!-- Single Policy Entry Section -->
+                <div class="report-section glass-panel">
+                    <h3 class="section-subtitle" id="txt-manual-subtitle">Registro de pólizas</h3>
+                    <p class="section-desc" id="txt-manual-desc">Escriba la póliza y pulse el botón de la categoría en la que se registrará en el informe.</p>
+
+                    <div class="policy-entry-card">
+                        <label for="input-policy" class="input-label" id="lbl-policy">Póliza</label>
+                        <input type="text" id="input-policy" class="glass-input" placeholder="ej., POL-10928 - Juan Pérez">
+
+                        <div class="category-buttons">
+                            <div class="category-group">
+                                <span class="category-group-label js-cat-group-daily">Diario</span>
+                                <div class="category-group-btns">
+                                    <button type="button" id="add-renewed-today-btn" class="glass-btn cat-btn js-cat-btn-renewed-today">Renovadas</button>
+                                    <button type="button" id="add-expired-today-btn" class="glass-btn cat-btn js-cat-btn-expired-today">Expiradas</button>
+                                    <button type="button" id="add-not-renewing-btn" class="glass-btn cat-btn js-cat-btn-not-renewing">No renovarán</button>
+                                </div>
+                            </div>
+                            <div class="category-group">
+                                <span class="category-group-label js-cat-group-general">General</span>
+                                <div class="category-group-btns">
+                                    <button type="button" id="add-general-btn" class="glass-btn cat-btn js-cat-btn-general">Renovadas</button>
+                                    <button type="button" id="add-general-not-renewing-btn" class="glass-btn cat-btn js-cat-btn-general-not-renewing">No renovarán</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entries-grid">
+                        <div class="entries-group">
+                            <h4 class="entries-group-title js-cat-title-renewed-today">Renovadas</h4>
+                            <ul id="list-renewed-today" class="entry-tags-list"></ul>
+                        </div>
+                        <div class="entries-group">
+                            <h4 class="entries-group-title js-cat-title-expired-today">Expiradas</h4>
+                            <ul id="list-expired-today" class="entry-tags-list"></ul>
+                        </div>
+                        <div class="entries-group">
+                            <h4 class="entries-group-title js-cat-title-not-renewing">No renovarán</h4>
+                            <ul id="list-not-renewing" class="entry-tags-list"></ul>
+                        </div>
+                        <div class="entries-group">
+                            <h4 class="entries-group-title js-cat-title-general">General — Renovadas después de hoy</h4>
+                            <ul id="list-general" class="entry-tags-list"></ul>
+                        </div>
+                        <div class="entries-group">
+                            <h4 class="entries-group-title js-cat-title-general-not-renewing">General — No renovarán después de hoy</h4>
+                            <ul id="list-general-not-renewing" class="entry-tags-list"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generated Daily Report Summary (Styled for Screenshots) -->
+                <div class="report-summary-section glass-panel" id="screenshot-target">
+                    <div class="summary-header">
+                        <div class="summary-title-group">
+                            <span class="workspace-brand-tag js-brand-tag" id="txt-brand-tag">DAILY REPORT TOOL</span>
+                            <h3><span class="js-summary-title-prefix" id="txt-summary-title-prefix">Resumen diario de renovaciones — </span><span class="js-report-date" id="report-date-str">--</span></h3>
+                        </div>
+                        <span class="summary-badge js-report-badge" id="report-total-badge">0 acciones registradas</span>
+                    </div>
+
+                    <!-- Summary Totals Bubble Buttons Row -->
+                    <div class="summary-bubbles-container">
+                        <div class="bubble-btn bubble-renewed">
+                            <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-renewed-today">0</span>
+                            </div>
+                            <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-renewed-today">Renovadas</span>
+                                    <span class="bubble-sub js-sub-renewed-today">Diario</span>
+                            </div>
+                        </div>
+
+                        <div class="bubble-btn bubble-expired">
+                            <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-expired-today">0</span>
+                            </div>
+                            <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-expired-today">Expiradas</span>
+                                    <span class="bubble-sub js-sub-expired-today">Diario</span>
+                            </div>
+                        </div>
+
+                        <div class="bubble-btn bubble-not-renewing">
+                            <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-not-renewing">0</span>
+                            </div>
+                            <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-not-renewing">No renovarán</span>
+                                    <span class="bubble-sub js-sub-not-renewing">Diario</span>
+                            </div>
+                        </div>
+
+                        <div class="bubble-btn bubble-general">
+                            <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-general">0</span>
+                            </div>
+                            <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-general">Renovadas</span>
+                                    <span class="bubble-sub js-sub-general">General — después de hoy</span>
+                            </div>
+                        </div>
+
+                        <div class="bubble-btn bubble-general-not-renewing">
+                            <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-general-not-renewing">0</span>
+                            </div>
+                            <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-general-not-renewing">No renovarán</span>
+                                    <span class="bubble-sub js-sub-general-not-renewing">General — después de hoy</span>
+                            </div>
+                        </div>
+
+                        <div class="bubble-btn bubble-total">
+                            <div class="bubble-icon-wrap">
+                                    <span class="bubble-count js-count-total">0</span>
+                            </div>
+                            <div class="bubble-info">
+                                    <span class="bubble-label js-lbl-total">Total registrado</span>
+                                    <span class="bubble-sub js-sub-total">Conteo total de actividad</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-summary-content js-report-summary" id="report-summary-box">
+                        <!-- Auto-generated summary text will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 3: Dealers Report -->
+            <div id="view-dealers-report" class="view hidden">
+                <div class="task-header-row">
+                    <h2 class="section-title" id="txt-dealers-title">Informe de dealers</h2>
+                    <div class="report-actions-top">
+                        <button type="button" id="copy-dealers-btn" class="glass-btn">Copiar resumen</button>
+                        <button type="button" id="clear-dealers-btn" class="glass-btn secondary-btn">Limpiar entradas</button>
+                    </div>
+                </div>
+
+                <div class="report-section glass-panel">
+                    <h3 class="section-subtitle" id="txt-dealers-subtitle">Pólizas vendidas en dealers</h3>
+                    <p class="section-desc" id="txt-dealers-desc">Registre las pólizas vendidas en concesionarios hoy.</p>
+
+                    <div class="report-input-grid dealers-input-grid">
+                        <div class="report-input-card">
+                            <label for="select-dealer" class="input-label">
+                                <span class="dot dot-renewed"></span> <span id="lbl-dealer-sold">Vendidas hoy</span>
+                            </label>
+                            <span class="input-help" id="help-dealer-sold">Elija el dealer, luego añada número de póliza y asegurado.</span>
+                            <div class="input-group dealer-entry-row">
+                                <select id="select-dealer" class="glass-input dealer-select" aria-label="Dealer">
+                                    <option value="">Seleccionar dealer</option>
+                                </select>
+                                <input type="text" id="input-dealer-sold" class="glass-input" placeholder="ej., POL-10928 - Jane Doe">
+                                <button type="button" id="add-dealer-sold-btn" class="glass-btn mini-btn">+ Añadir</button>
+                            </div>
+                            <ul id="list-dealer-sold" class="entry-tags-list"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-summary-section glass-panel" id="dealers-screenshot-target">
+                    <div class="summary-header">
+                        <div class="summary-title-group">
+                            <span class="workspace-brand-tag js-dealers-brand-tag" id="txt-dealers-brand-tag">DAILY REPORT TOOL</span>
+                            <h3><span class="js-dealers-summary-prefix" id="txt-dealers-summary-prefix">Resumen diario de dealers — </span><span class="js-dealers-date" id="dealers-report-date">--</span></h3>
+                        </div>
+                        <span class="summary-badge js-dealers-badge" id="dealers-total-badge">0 vendidas</span>
+                    </div>
+
+                    <div id="dealers-tally" class="dealers-tally js-dealers-tally"></div>
+
+                    <div class="report-summary-content js-dealers-summary" id="dealers-summary-box"></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
