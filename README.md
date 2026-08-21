@@ -1,4 +1,5 @@
-# DPR Workspace
+# Daily Report Tool
+**VibeCodedApp**
 
 Local tool for daily **policy renewal follow-ups** at Mavic Plus, plus a report you can copy to a supervisor.
 
@@ -52,10 +53,6 @@ Open `index.html` (double-click, or “Open with Live Server” in the editor).
 
 ## Notes
 
-- Colors use the Mavic Plus **OKLCH** palette in [`../README.md`](../README.md). Ink and cream are the text/paper pair; olive, gold, and aqua are ready on `--olive`, `--gold`, and `--aqua`.
+- Colors use the Mavic Plus **OKLCH** palette in `style.css`. Ink and cream are the text/paper pair; olive, gold, and aqua are ready on `--olive`, `--gold`, and `--aqua`.
 - The circle in the top bar switches light and dark. Choice is saved in this browser.
 - Do not put real client data in git. Reports are local to the machine.
-
-## Parent
-
-Part of [`Mavic_Plus_Projects/`](../README.md) inside the private [Batey](../../README.md) workspace.
