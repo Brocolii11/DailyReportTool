@@ -1,7 +1,6 @@
 # Daily Report Tool
-**VibeCodedApp**
 
-Local tool for daily **policy renewal follow-ups** at Mavic Plus, plus a report you can copy to a supervisor.
+**Daily Report Tool** is a follow-up report tool for **renewal** and **retention** teams. Track daily follow-up windows, log renewal outcomes, and copy a summary to share.
 
 Open `index.html` in a browser. No install, no server.
 
@@ -9,9 +8,9 @@ Open `index.html` in a browser. No install, no server.
 
 | View | Purpose |
 |------|---------|
-| **Dashboard** | Target dates for the four daily follow-up windows |
-| **Renewal Report** | Log today’s renewal outcomes and copy a formatted summary |
-| **Dealers Report** | Log policies sold at dealerships and copy a summary |
+| **Dashboard** | Target dates for the four daily follow-up windows, plus report totals |
+| **Renewal Report** | Type a policy once, assign it to a category, and copy a formatted summary |
+| **Dealers Report** | Log policies sold at partner locations and copy a summary |
 
 Data stays in this browser (`localStorage`). Clearing site data wipes the day’s reports.
 
@@ -26,16 +25,26 @@ Dashboard dates are computed from **today** (same calendar day, local time):
 | **S2** | Due in 15 days | `today + 15 days` |
 | **S1** | Due in 30 days | `today + 30 days` |
 
-The dashboard shows **dates only**. Pull the matching policies from Riskman; this app does not connect to the CRM.
+The dashboard shows **dates only**. Pull matching policies from your own system; this app does not connect to a CRM.
 
-## Daily report buckets
+## Renewal report buckets
+
+Type the policy in one field, then press the category button. Enter repeats the last category used.
+
+**Daily** (today’s activity):
 
 | Bucket | What to log |
 |--------|-------------|
-| Policies renewed today | Scheduled renewals for today |
-| Renewed (past / future date) | Renewed, but expiration is not today |
-| Confirmed non-renewals | Client confirmed they will not renew |
-| Expired (no response) | Lapsed after follow-ups with no reply |
+| Renewed | Policies renewed today |
+| Expired | Policies that expired today |
+| Will not renew | Confirmed non-renewals for today |
+
+**General** (activity after today):
+
+| Bucket | What to log |
+|--------|-------------|
+| Renewed | Renewals that take effect after today |
+| Will not renew | Confirmed non-renewals after today |
 
 **Copy Summary** puts the generated text on the clipboard. There is no email/submit yet. You can also screenshot the summary panel.
 
@@ -53,6 +62,10 @@ Open `index.html` (double-click, or “Open with Live Server” in the editor).
 
 ## Notes
 
-- Colors use the Mavic Plus **OKLCH** palette in `style.css`. Ink and cream are the text/paper pair; olive, gold, and aqua are ready on `--olive`, `--gold`, and `--aqua`.
+- Colors use an **OKLCH** palette in `style.css`. Ink and cream are the text/paper pair; olive, gold, and aqua are ready on `--olive`, `--gold`, and `--aqua`.
 - The circle in the top bar switches light and dark. Choice is saved in this browser.
 - Do not put real client data in git. Reports are local to the machine.
+
+## VibeCodedApp
+
+This is a **VibeCodedApp**. It exists because reports still have to go out, and there is not enough time to research and build a full custom tool from scratch. The goal is a working follow-up report, not a polished product.
