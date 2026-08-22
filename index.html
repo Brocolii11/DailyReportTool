@@ -189,39 +189,39 @@
                             <div class="category-group">
                                 <span class="category-group-label js-cat-group-daily">Diario</span>
                                 <div class="category-group-btns">
-                                    <button type="button" id="add-renewed-today-btn" class="glass-btn cat-btn js-cat-btn-renewed-today">Renovadas</button>
-                                    <button type="button" id="add-expired-today-btn" class="glass-btn cat-btn js-cat-btn-expired-today">Expiradas</button>
-                                    <button type="button" id="add-not-renewing-btn" class="glass-btn cat-btn js-cat-btn-not-renewing">No renovarán</button>
+                                    <button type="button" id="add-renewed-today-btn" class="glass-btn cat-btn cat-btn-renewed js-cat-btn-renewed-today">Renovadas</button>
+                                    <button type="button" id="add-expired-today-btn" class="glass-btn cat-btn cat-btn-expired js-cat-btn-expired-today">Expiradas</button>
+                                    <button type="button" id="add-not-renewing-btn" class="glass-btn cat-btn cat-btn-not-renewing js-cat-btn-not-renewing">No renovarán</button>
                                 </div>
                             </div>
                             <div class="category-group">
                                 <span class="category-group-label js-cat-group-general">General</span>
                                 <div class="category-group-btns">
-                                    <button type="button" id="add-general-btn" class="glass-btn cat-btn js-cat-btn-general">Renovadas</button>
-                                    <button type="button" id="add-general-not-renewing-btn" class="glass-btn cat-btn js-cat-btn-general-not-renewing">No renovarán</button>
+                                    <button type="button" id="add-general-btn" class="glass-btn cat-btn cat-btn-renewed js-cat-btn-general">Renovadas</button>
+                                    <button type="button" id="add-general-not-renewing-btn" class="glass-btn cat-btn cat-btn-not-renewing js-cat-btn-general-not-renewing">No renovarán</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="entries-grid">
-                        <div class="entries-group">
+                        <div class="entries-group entries-renewed">
                             <h4 class="entries-group-title js-cat-title-renewed-today">Renovadas</h4>
                             <ul id="list-renewed-today" class="entry-tags-list"></ul>
                         </div>
-                        <div class="entries-group">
+                        <div class="entries-group entries-expired">
                             <h4 class="entries-group-title js-cat-title-expired-today">Expiradas</h4>
                             <ul id="list-expired-today" class="entry-tags-list"></ul>
                         </div>
-                        <div class="entries-group">
+                        <div class="entries-group entries-not-renewing">
                             <h4 class="entries-group-title js-cat-title-not-renewing">No renovarán</h4>
                             <ul id="list-not-renewing" class="entry-tags-list"></ul>
                         </div>
-                        <div class="entries-group">
+                        <div class="entries-group entries-general">
                             <h4 class="entries-group-title js-cat-title-general">General — Renovadas después de hoy</h4>
                             <ul id="list-general" class="entry-tags-list"></ul>
                         </div>
-                        <div class="entries-group">
+                        <div class="entries-group entries-general-not-renewing">
                             <h4 class="entries-group-title js-cat-title-general-not-renewing">General — No renovarán después de hoy</h4>
                             <ul id="list-general-not-renewing" class="entry-tags-list"></ul>
                         </div>
